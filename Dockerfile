@@ -96,4 +96,8 @@ RUN     apk update                       && \
 # also, enable ioncube
 
 ADD etc/supervisor.d/ /etc/supervisor/config.d/
-CMD     ["php-fpm"]
+VOLUME /srv/data /tmp /var/tmp /run /var/log
+
+EXPOSE 80 443
+
+ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]

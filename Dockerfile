@@ -100,4 +100,7 @@ VOLUME /srv/data /tmp /var/tmp /run /var/log
 
 EXPOSE 80 443
 
-ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+
+#ENTRYPOINT ["/usr/bin/supervisord","-c","/etc/supervisord.conf"]
+
+CMD     ["php-fpm"]

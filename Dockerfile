@@ -102,6 +102,6 @@ VOLUME /var/log
 EXPOSE 80 443
 
 
-ENTRYPOINT ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
+CMD ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
 
 #CMD     ["php-fpm"]

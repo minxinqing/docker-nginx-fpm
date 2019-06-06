@@ -65,6 +65,7 @@ RUN     apk update                       && \
             -C /tmp/                                                &&  \
         \
         mkdir -p /usr/local/php/ext/ioncube                         &&  \
+        mkdir -p /run/nginx                                         &&  \
         \
         cp -a /tmp/ioncube/ioncube_loader_lin_${PHP_VERSION%.*}.so      \
             /usr/local/php/ext/ioncube/ioncube_loader.so            &&  \
@@ -95,12 +96,12 @@ RUN     apk update                       && \
 # https://secure.php.net/manual/en/apcu.configuration.php
 # also, enable ioncube
 
-ADD etc/supervisor.d/ /etc/supervisor/config.d/
-VOLUME /srv/data /tmp /var/tmp /run /var/log
+ADD etc/supervisor/ /etc/supervisor/
+VOLUME /var/log
 
 EXPOSE 80 443
 
 
-#ENTRYPOINT ["/usr/bin/supervisord","-c","/etc/supervisord.conf"]
+ENTRYPOINT ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
 
-CMD     ["php-fpm"]
+#CMD     ["php-fpm"]
